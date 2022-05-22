@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public String registerAccount(Customer customer) throws ParseException {
-        if (customer.getIdentityNumber() == null) {
+        if (customer.getIdentityNumber() == null || "".equals(customer.getIdentityNumber())) {
             throw new RuntimeException("身份证不能为空");
         } else if (!checkIdentityNumber(customer)) {
             throw new RuntimeException("已拥有一个账号");

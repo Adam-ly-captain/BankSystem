@@ -35,7 +35,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public String registerAccount(Customer customer) throws ParseException {
-        if (!checkIdentityNumber(customer)) {
+        if (customer.getIdentityNumber() == null) {
+            throw new RuntimeException("身份证不能为空");
+        } else if (!checkIdentityNumber(customer)) {
             throw new RuntimeException("已拥有一个账号");
         }
         // 获取随机账号名(时间戳+maxId)

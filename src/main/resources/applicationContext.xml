@@ -89,6 +89,8 @@
         <property name="filters">
             <map>
                 <entry key="authc" value-ref="shiroUserFilter"/>
+                <entry key="authc" value-ref="httpsFilter"/>
+<!--                <entry key="authc" value-ref="logoutFilterHttps"/>-->
             </map>
         </property>
 
@@ -98,13 +100,16 @@
                 <!--  url = 拦截规则（anon为匿名，authc为要登录后，才能访问，logout登出过滤） -->
                 /account/login = anon
                 /account/register = anon
-                /**= anon
+                /account/logout = logout
+                /**= authc
 <!--                /**= authc-->
             </value>
         </property>
     </bean>
 
     <bean id="shiroUserFilter" class="edu.fjnu501.interceptor.ShiroUserFilter"/>
+    <bean id="httpsFilter" class="edu.fjnu501.interceptor.HttpsFilter"/>
+    <bean id="logoutFilterHttps" class="edu.fjnu501.interceptor.LogoutFilterHttps"/>
 
     <bean id="authorizationAttributeSourceAdvisor" class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>

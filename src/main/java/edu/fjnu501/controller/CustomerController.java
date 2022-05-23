@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
 @Controller
@@ -89,6 +90,18 @@ public class CustomerController {
             return new Result(500, "更新失败", null);
         }
         return new Result(200, "更新成功", null);
+    }
+
+    @RequestMapping("/logout")
+    @ResponseBody
+    public Result logout(HttpSession session) {
+        Subject subject = SecurityUtils.getSubject();
+        try {
+            subject.logout();
+        } catch (Exception e) {
+            return new Result(500, "登出失败", null);
+        }
+        return new Result(200, "成功登出", null);
     }
 
 }

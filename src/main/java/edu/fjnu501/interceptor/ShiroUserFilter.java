@@ -1,5 +1,7 @@
 package edu.fjnu501.interceptor;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.fjnu501.domain.Result;
 import org.apache.shiro.web.filter.authc.UserFilter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,7 +72,8 @@ public class ShiroUserFilter extends UserFilter {
         saveRequest(request);
         setHeader((HttpServletRequest) request,(HttpServletResponse) response);
         PrintWriter out = response.getWriter();
-        out.println(111);
+        ObjectMapper objectMapper = new ObjectMapper();
+        out.println(objectMapper.writeValueAsString(new Result(400, "未登录", null)));
         out.flush();
         out.close();
     }

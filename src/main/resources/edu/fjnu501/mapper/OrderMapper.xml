@@ -13,5 +13,21 @@
         select * from bank_order where uid = #{uid}
     </select>
 
+    <resultMap id="bankTradeMap" type="transferTrade">
+        <id column="id" property="tradeId"/>
+        <result column="card_id" property="cid"/>
+        <result column="amount" property="amount"/>
+        <result column="transfer_id" property="transferId"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <select id="checkTransferTradeInfo" parameterType="int" resultMap="bankTradeMap">
+        select * from transfer_trade where transfer_id = #{id}
+    </select>
+
+    <insert id="addTransferTradeInfo" parameterType="transferTrade">
+        insert into transfer_trade values (#{tradeId}, #{transferId}, #{amount}, #{type}, #{cid})
+    </insert>
+
 
 </mapper>

@@ -102,6 +102,7 @@
                 /account/register = anon
                 /account/logout = logout
                 /**= authc
+<!--                /**= anon-->
 <!--                /**= authc-->
             </value>
         </property>
@@ -131,5 +132,11 @@
         <property name="cookie" ref="rememberMeCookie"/>
     </bean>
     <!-- rememberMeCookie     asplover end-->
+
+    <bean id="queueSchedule" class="edu.fjnu501.rpc.ReceiveQueueSchedule">
+        <property name="orderService" ref="orderService2"/>
+    </bean>
+
+    <bean id="orderService2" class="edu.fjnu501.service.impl.OrderServiceImpl"/>
 
 </beans>

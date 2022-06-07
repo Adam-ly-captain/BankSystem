@@ -28,7 +28,7 @@ public class BankCardServiceImpl implements BankCardService {
 
     @Override
     public void updateBalance(Order order) {
-        if (Trade.withdraw.getType().equals(order.getType())) {  // 取钱
+        if (Trade.withdraw.getType().equals(order.getType()) || Trade.WITHDRAW.getType().equals(order.getType())) {  // 取钱
             double balance = findBalance(order.getCid());
             if (balance < order.getAmount()) {
                 throw new RuntimeException("余额不足");

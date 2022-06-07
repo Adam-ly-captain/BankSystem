@@ -3,7 +3,9 @@ package edu.fjnu501.service.impl;
 import edu.fjnu501.bankenum.Trade;
 import edu.fjnu501.domain.Order;
 import edu.fjnu501.domain.TransferOrder;
+import edu.fjnu501.domain.TransferTrade;
 import edu.fjnu501.mapper.OrderMapper;
+import edu.fjnu501.rpc.domain.BankTrade;
 import edu.fjnu501.service.BankCardService;
 import edu.fjnu501.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,26 @@ public class OrderServiceImpl implements OrderService {
 
         bankCardService.updateBalance(srcOrder);
         bankCardService.updateBalance(distOrder);
+    }
+
+    @Override
+    public boolean checkTransferTradeInfo(BankTrade bankTrade) {
+        TransferTrade trade = orderMapper.checkTransferTradeInfo(bankTrade.getTradeId());
+        if (trade != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void addTransferTradeInfo(BankTrade bankTrade) {
+        TransferTrade trade = new TransferTrade(bankTrade.getTradeId(), bankTrade.getAddedMoney(), bankTrade.getType(), bankTrade.getBankCardId());
+        orderMapper.addTransferTradeInfo(trade);
+        Order order = new Order();
+        order.setCid(bankTrade.getBankCardId());
+        order.setAmount(bankTrade.getAddedMoney());
+        order.setType(String.valueOf(bankTrade.getType()));
+        bankCardService.updateBalance(order);
     }
 
 }

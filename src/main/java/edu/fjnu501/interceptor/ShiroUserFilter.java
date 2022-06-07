@@ -29,7 +29,7 @@ public class ShiroUserFilter extends UserFilter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         System.out.println(httpRequest.getMethod());
-        httpResponse.setHeader("Access-control-Allow-Origin", "http://127.0.0.1:5500/");
+        httpResponse.setHeader("Access-control-Allow-Origin", "http://127.0.0.1:8080/");
         httpResponse.setHeader("Access-Control-Allow-Methods", httpRequest.getMethod());
         httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
         httpResponse.setHeader("Access-Control-Allow-Headers", httpRequest.getHeader("Access-Control-Request-Headers"));

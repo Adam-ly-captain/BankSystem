@@ -6,7 +6,7 @@
 
     <groupId>edu.fjnu501</groupId>
     <artifactId>bank</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
     <packaging>war</packaging>
 
     <properties>
@@ -148,6 +148,39 @@
             <version>2.5.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>3.2.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet.jsp</groupId>
+                    <artifactId>jsp-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jersey</groupId>
+                    <artifactId>jersey-servlet</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jersey</groupId>
+                    <artifactId>jersey-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.fjnu501</groupId>
+            <artifactId>rpc</artifactId>
+            <version>1.0</version>
+        </dependency>
 
     </dependencies>
 

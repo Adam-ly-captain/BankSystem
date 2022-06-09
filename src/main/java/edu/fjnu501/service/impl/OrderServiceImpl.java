@@ -33,6 +33,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getAllOrdersByUid(int uid) {
         List<Order> orders = orderMapper.getAllOrdersByUid(uid);
+//        List<Order> allTransferTradeInfo = orderMapper.getAllTransferTradeInfo(uid);
+//        orders.addAll(allTransferTradeInfo);
         return orders;
     }
 

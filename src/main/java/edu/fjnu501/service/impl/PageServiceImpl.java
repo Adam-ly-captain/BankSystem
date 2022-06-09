@@ -7,6 +7,7 @@ import edu.fjnu501.domain.Order;
 import edu.fjnu501.domain.Page;
 import edu.fjnu501.mapper.BankCardMapper;
 import edu.fjnu501.mapper.OrderMapper;
+import edu.fjnu501.service.OrderService;
 import edu.fjnu501.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,16 @@ public class PageServiceImpl implements PageService {
     private OrderMapper orderMapper;
 
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     private BankCardMapper bankCardMapper;
 
     @Override
     public Page getOrderInfoByPage(Page page) {
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
-        List<Order> allOrdersByUid = orderMapper.getAllOrdersByUid(page.getUid());
+//        List<Order> allOrdersByUid = orderMapper.getAllOrdersByUid(page.getUid());
+        List<Order> allOrdersByUid = orderService.getAllOrdersByUid(page.getUid());
         PageInfo<Order> pageInfo = new PageInfo<>(allOrdersByUid);
 
         page.setData(allOrdersByUid);

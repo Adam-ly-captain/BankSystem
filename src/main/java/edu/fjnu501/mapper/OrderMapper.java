@@ -16,4 +16,6 @@ public interface OrderMapper {
 
     void addTransferTradeInfo(TransferTrade trade);
 
+    List<Order> getAllTransferTradeInfo(int uid);
+
 }

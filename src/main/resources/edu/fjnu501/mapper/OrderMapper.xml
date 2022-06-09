@@ -11,6 +11,11 @@
 
     <select id="getAllOrdersByUid" parameterType="int" resultType="order">
         select * from bank_order where uid = #{uid}
+        UNION
+        SELECT tr.transfer_id, tr.cid, c.uid, tr.type, tr.amount FROM `transfer_trade` as tr
+                                                                          JOIN bank_card as c
+                                                                          JOIN customer as u
+                                                                               ON c.cid = tr.cid and u.uid = c.uid and u.uid = #{uid}
     </select>
 
     <resultMap id="bankTradeMap" type="transferTrade">
@@ -29,5 +34,19 @@
         insert into transfer_trade values (#{tradeId}, #{transferId}, #{amount}, #{type}, #{cid})
     </insert>
 
+    <resultMap id="transferTradeMap" type="order">
+        <id column="transfer_id" property="oid"/>
+        <result column="cid" property="cid"/>
+        <result column="amount" property="amount"/>
+        <result column="type" property="type"/>
+        <result column="uid" property="uid"/>
+    </resultMap>
+
+    <select id="getAllTransferTradeInfo" parameterType="int" resultMap="transferTradeMap">
+        SELECT tr.transfer_id, tr.cid, c.uid, tr.type, tr.amount FROM `transfer_trade` as tr
+                                                                          JOIN bank_card as c
+                                                                          JOIN customer as u
+                                                                               ON c.cid = tr.cid and u.uid = c.uid and u.uid = #{uid}
+    </select>
 
 </mapper>

@@ -4,7 +4,7 @@
 | 接口                                                         | 说明                                                         | 样例                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [http://120.79.139.163/bank/account/get/info/](http://120.79.139.163/bank/account/get/info/1){uid} | 根据用户ID获取用户信息                                       | [120.79.139.163/bank/account/get/info/1](http://120.79.139.163/bank/account/get/info/1) |
-| http://120.79.139.163/bank/account/register                  | 注册账号，注册成功后会返回随机生成的账号                     | ![image-20220519183747773]((https://github.com/Adam-ly-captain/SSM/blob/master/img/image-20220519183747773.png) |
+| http://120.79.139.163/bank/account/register                  | 注册账号，注册成功后会返回随机生成的账号                     | ![image-20220519183747773](https://github.com/Adam-ly-captain/SSM/blob/master/img/image-20220519183747773.png) |
 | http://120.79.139.163/bank/account/login                     | 登录账号，登录成功后返回该用户所有信息                       | ![image-20220518012826193](https://github.com/Adam-ly-captain/SSM/blob/master/img/image-20220518012826193.png) |
 | [http://120.79.139.163/bank/card/add](http://120.79.139.163/bank/card/add) | 添加银行卡                                                   | ![image-20220518014721734](https://github.com/Adam-ly-captain/SSM/blob/master/img/image-20220518014721734.png) |
 | http://120.79.139.163/bank/card/get/{uid}                    | 通过传入用户ID获取该用户所有银行卡信息                       | http://120.79.139.163/bank/card/get/1                        |
